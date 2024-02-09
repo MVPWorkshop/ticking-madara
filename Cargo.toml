@@ -1,65 +1,69 @@
 [workspace]
 resolver = "2"
 members = [
-  "crates/node",
-  "crates/runtime",
-  "crates/pallets/starknet/runtime_api/",
-  "crates/pallets/starknet",
-  "crates/primitives/genesis-config/",
-  "crates/primitives/digest-log",
-  "crates/primitives/snos-output",
-  "crates/primitives/transactions",
-  "crates/primitives/felt",
-  "crates/primitives/hashers",
-  "crates/primitives/fee",
-  "crates/primitives/state",
-  "crates/primitives/block",
-  "crates/primitives/sequencer-address",
-  "crates/primitives/storage",
-  "crates/primitives/chain-id",
-  "crates/primitives/messages",
-  "crates/primitives/program-hash",
-  "crates/client/genesis-data-provider",
-  "crates/client/db",
-  "crates/client/rpc-core",
-  "crates/client/rpc",
-  "crates/client/mapping-sync",
-  "crates/client/storage",
-  "crates/client/commitment-state-diff",
-  "crates/client/settlement",
-  "starknet-rpc-test",
-  "da-test",
-  "starknet-e2e-test",
-  "madara-test-runner",
+	"crates/node",
+	"crates/runtime",
+	"crates/pallets/rancici/runtime_api/",
+	"crates/pallets/rancici",
+	"crates/pallets/starknet/runtime_api/",
+	"crates/pallets/starknet",
+	"crates/primitives/genesis-config/",
+	"crates/primitives/digest-log",
+	"crates/primitives/snos-output",
+	"crates/primitives/transactions",
+	"crates/primitives/felt",
+	"crates/primitives/hashers",
+	"crates/primitives/fee",
+	"crates/primitives/state",
+	"crates/primitives/block",
+	"crates/primitives/sequencer-address",
+	"crates/primitives/storage",
+	"crates/primitives/chain-id",
+	"crates/primitives/messages",
+	"crates/primitives/program-hash",
+	"crates/client/genesis-data-provider",
+	"crates/client/db",
+	"crates/client/rpc-core",
+	"crates/client/rpc",
+	"crates/client/mapping-sync",
+	"crates/client/storage",
+	"crates/client/commitment-state-diff",
+	"crates/client/settlement",
+	"starknet-rpc-test",
+	"da-test",
+	"starknet-e2e-test",
+	"madara-test-runner",
 ]
 # All previous except for `starknet-rpc-test` and `starknet-e2e-test`
 # We don't want `cargo test` to trigger its tests
 default-members = [
-  "crates/node",
-  "crates/runtime",
-  "crates/pallets/starknet/runtime_api/",
-  "crates/pallets/starknet",
-  "crates/primitives/genesis-config/",
-  "crates/primitives/digest-log",
-  "crates/primitives/transactions",
-  "crates/primitives/felt",
-  "crates/primitives/hashers",
-  "crates/primitives/fee",
-  "crates/primitives/state",
-  "crates/primitives/block",
-  "crates/primitives/sequencer-address",
-  "crates/primitives/storage",
-  "crates/primitives/chain-id",
-  "crates/primitives/messages",
-  "crates/primitives/program-hash",
-  "crates/client/genesis-data-provider",
-  "crates/client/db",
-  "crates/client/rpc-core",
-  "crates/client/rpc",
-  "crates/client/mapping-sync",
-  "crates/client/storage",
-  "crates/client/commitment-state-diff",
-  "crates/client/settlement",
+	"crates/node",
+	"crates/runtime",
+	"crates/pallets/rancici/runtime_api/",
+	"crates/pallets/rancici",
+	"crates/pallets/starknet/runtime_api/",
+	"crates/pallets/starknet",
+	"crates/primitives/genesis-config/",
+	"crates/primitives/digest-log",
+	"crates/primitives/transactions",
+	"crates/primitives/felt",
+	"crates/primitives/hashers",
+	"crates/primitives/fee",
+	"crates/primitives/state",
+	"crates/primitives/block",
+	"crates/primitives/sequencer-address",
+	"crates/primitives/storage",
+	"crates/primitives/chain-id",
+	"crates/primitives/messages",
+	"crates/primitives/program-hash",
+	"crates/client/genesis-data-provider",
+	"crates/client/db",
+	"crates/client/rpc-core",
+	"crates/client/rpc",
+	"crates/client/mapping-sync",
+	"crates/client/storage",
+	"crates/client/commitment-state-diff",
+	"crates/client/settlement",
 ]
 
 [profile.release]
@@ -220,6 +224,14 @@ pallet-starknet = { path = "crates/pallets/starknet", default-features = false, 
 pallet-starknet-runtime-api = { path = "crates/pallets/starknet/runtime_api", default-features = false, features = [
   "std",
 ] }
+# Hackathon pallet
+pallet-rancici = { path = "crates/pallets/rancici", default-features = false, features = [
+  "std",
+] }
+pallet-rancici-runtime-api = { path = "crates/pallets/rancici/runtime_api", default-features = false, features = [
+  "std",
+] }
+
 # Madara primtitives
 mp-genesis-config = { path = "crates/primitives/genesis-config", default-features = false }
 mp-digest-log = { path = "crates/primitives/digest-log", default-features = false }
@@ -357,6 +369,7 @@ async-lock = "3.1.0"
 rustc-hex = { version = "2.0.0" }
 itertools = "0.12.0"
 tempfile = "3.2"
+rand = "0.8.5"
 
 [patch."https://github.com/w3f/ring-vrf"]
 bandersnatch_vrfs = { git = "https://github.com/w3f/ring-vrf?rev=3ddc20", version = "0.0.4", rev = "3ddc20" }

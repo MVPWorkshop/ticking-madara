@@ -46,3 +46,4 @@ cairo_venv
 starknet-e2e-test/contracts/cache
 starknet-e2e-test/contracts/build
 tmp/
+build-log.txt
